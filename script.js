@@ -2,14 +2,17 @@ $('form #login').click(function() {
     let username = $('#username').val();
     let password = $('#password').val();
 
-    let obj = authenticationUser(username, password);
-    console.log(obj);
+    if (username === '' || password === '') {
+        alert('Пожалуйста, введите данные.');
+    } else {
+        authenticationUser(username, password);
+    }
 });
 
 function authenticationUser(username, password) {
     let url = 'https://raw.githubusercontent.com/gleb-1996/test-db/main/data.json';
     let xhr = new XMLHttpRequest();
-    let result = {};
+    let message;
 
     xhr.open('GET', url);
     xhr.responseType = 'json';
@@ -18,25 +21,21 @@ function authenticationUser(username, password) {
         let responseObj = xhr.response;
 
         if (xhr.status != 200) {
-            result.responseStatus = false;
-            result.text = `Ошибка ${xhr.status}: ${xhr.statusText}`;
+            message = `Ошибка ${xhr.status}: ${xhr.statusText}`;
+            alert(message);
         } else {
             let coincidences = 0;
             for (let i = 0; i < responseObj.length; i++) {
                 if (responseObj[i].userName === username && responseObj[i].userPassword === password) {
-                    result.responseStatus = true;
-                    result.text = `Пользователь ${responseObj[i].userName} успешно аутентифицирован.`;
                     coincidences++;
+                    message = `Пользователь ${responseObj[i].userName} успешно аутентифицирован.`;
+                    alert(message);
                     break;
+                } else {
+                    message = `Пользователь ${username} не был аутентифицирован.`;
+                    alert(message);
                 }
-            }
-
-            if (coincidences === 0) {
-                result.responseStatus = false;
-                result.text = `Пользователь ${username} не был аутентифицирован.`;
             }
         }
     }
-
-    return result;
 }
