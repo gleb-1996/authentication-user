@@ -10,8 +10,9 @@ $('form #login').click(function() {
 });
 
 function authenticationUser(username, password) {
-    let url = 'https://raw.githubusercontent.com/gleb-1996/test-db/main/data.json';
+    let url = 'https://raw.githubusercontent.com/gleb-1996/test-db/main/dataa.json';
     let xhr = new XMLHttpRequest();
+    let coincidences = 0;
     let message;
 
     xhr.open('GET', url);
@@ -21,20 +22,22 @@ function authenticationUser(username, password) {
         let responseObj = xhr.response;
 
         if (xhr.status != 200) {
+            console.log(xhr.statusText);
             message = `Ошибка ${xhr.status}: ${xhr.statusText}`;
             alert(message);
         } else {
-            let coincidences = 0;
             for (let i = 0; i < responseObj.length; i++) {
                 if (responseObj[i].userName === username && responseObj[i].userPassword === password) {
                     coincidences++;
                     message = `Пользователь ${responseObj[i].userName} успешно аутентифицирован.`;
                     alert(message);
                     break;
-                } else {
-                    message = `Пользователь ${username} не был аутентифицирован.`;
-                    alert(message);
                 }
+            }
+
+            if (coincidences === 0) {
+                message = `Пользователь ${username} не был аутентифицирован.`;
+                alert(message);
             }
         }
     }
