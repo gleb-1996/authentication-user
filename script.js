@@ -1,7 +1,6 @@
 // Реализация с помощью XMLHttpRequest
 
 $('form #login').click(function() {
-
     let username = $('#username').val();
     let password = $('#password').val();
 
@@ -10,11 +9,9 @@ $('form #login').click(function() {
     } else {
         authenticationUser(username, password);
     }
-
 });
 
 function authenticationUser(username, password) {
-
     let url = 'https://raw.githubusercontent.com/gleb-1996/test-db/main/users.json';
     let xhr = new XMLHttpRequest();
     let coincidences = 0;
@@ -45,5 +42,4 @@ function authenticationUser(username, password) {
             }
         }
     }
-
 }
