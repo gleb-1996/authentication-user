@@ -1,4 +1,7 @@
+// Реализация с помощью XMLHttpRequest
+
 $('form #login').click(function() {
+
     let username = $('#username').val();
     let password = $('#password').val();
 
@@ -7,10 +10,12 @@ $('form #login').click(function() {
     } else {
         authenticationUser(username, password);
     }
+
 });
 
 function authenticationUser(username, password) {
-    let url = 'https://raw.githubusercontent.com/gleb-1996/test-db/main/data.json';
+
+    let url = 'https://raw.githubusercontent.com/gleb-1996/test-db/main/users.json';
     let xhr = new XMLHttpRequest();
     let coincidences = 0;
     let message;
@@ -31,7 +36,6 @@ function authenticationUser(username, password) {
                     message = `Пользователь ${responseObj[i].userName} успешно аутентифицирован.`;
                     alert(message);
                     document.location.href = 'lk.html';
-                    break;
                 }
             }
 
@@ -41,4 +45,5 @@ function authenticationUser(username, password) {
             }
         }
     }
+
 }
