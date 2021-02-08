@@ -1,6 +1,8 @@
 // Реализация с помощью XMLHttpRequest
 
-$('form #login').click(function() {
+$('form #login').click(function(event) {
+    event.preventDefault();
+
     let username = $('#username').val();
     let password = $('#password').val();
 
