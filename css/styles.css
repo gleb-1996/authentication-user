@@ -1,0 +1,40 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+}
+form {
+    width: 300px;
+    min-height: 100px;
+    padding: 20px;
+    background-color: #eaecef;
+    border-radius: 5px;
+}
+#username, #password {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 5px 12px;
+    font-size: 14px;
+    line-height: 20px;
+    border: 1px solid #e1e4e8;
+    border-radius: 5px;
+}
+#username:focus {
+    border: 1px solid #6ba2eb;
+}
+/* #password:focus {
+    : 1px solid blue;
+} */
+#password {margin-top: 10px;}
+#login {
+    width: 100%;
+    height: 30px;
+    font-weight: bold;
+    background-color: #2ea44f;
+    color: #fff;
+    margin-top: 10px;
+    border: 1px solid #dcedc8;
+    border-radius: 6px;
+    cursor: pointer;
+}
